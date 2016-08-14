@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app>
+<html lang="en" ng-app="angularController">
 
 <head>
      <meta charset="utf-8">
@@ -17,7 +17,36 @@
 <body>
 
     <div class="container">
-        <div class="row row-content" ng-init="dishes=[
+        <div class="row row-content" ng-controller="menuController as menuCtr">
+            <div class="col-xs-12">
+                <ul class="media-list">
+                <li class="media" ng-repeat="dish in menuCtr.dishes">
+                <div class="media-left media-middle">
+                    <a href="#">
+                    <img class="media-object img-thumbnail" ng-src={{dish.image}} alt="uthapizza">
+                    </a>
+                    </div>
+                    <div class="media-body">
+                    <h2 claas="media-heading">
+                        {{dish.name}}
+                        </h2>
+                        <span class="label label-danger label-xs">{{dish.label}}</span>
+                        <span class="badge">{{dish.price | currency}}</span>
+                        <p>{{dish.description}}</p>
+                        <p>{{dish.comment}}</p>
+                        <p>Please enter the comment:
+                            <input type="text" ng-model="dish.comment">
+                        </p>
+                    </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script>
+    var app=angular.module("angularController",[]);
+        app.controller("menuController",function(){
+           var dishes=[
                          {
                            name:'Uthapizza',
                            image: 'images/uthapizza.png',
@@ -54,32 +83,9 @@
                            description:'A delectable, semi-sweet New York Style Cheese Cake, with Graham cracker crust and spiced with Indian cardamoms',
                            comment: ''
                         }
-                        ]">
-            <div class="col-xs-12">
-                <ul class="media-list">
-                <li class="media" ng-repeat="dish in dishes">
-                <div class="media-left media-middle">
-                    <a href="#">
-                    <img class="media-object img-thumbnail" ng-src={{dish.image}} alt="uthapizza">
-                    </a>
-                    </div>
-                    <div class="media-body">
-                    <h2 claas="media-heading">
-                        {{dish.name}}
-                        </h2>
-                        <span class="label label-danger label-xs">{{dish.label}}</span>
-                        <span class="badge">{{dish.price | currency}}</span>
-                        <p>{{dish.description}}</p>
-                        <p>{{dish.comment}}</p>
-                        <p>Please enter the comment:
-                            <input type="text" ng-model="dish.comment">
-                        </p>
-                    </div>
-                </ul>
-                </li>
-            </div>
-        </div>
-    </div>
-
+                        ];
+            this.dishes=dishes;
+        })
+    </script>
 </body>
 </html>
