@@ -18,9 +18,17 @@
 
     <div class="container">
         <div class="row row-content" ng-controller="menuController as menuCtr">
+            <ul class="nav nav-tabs" role='tablist'>
+                <li role="presentation" ng-class="{active:menuCtr.isSelected(1)}"><a role="tab" ng-click="menuCtr.select(1)">The Menu</a></li>
+                <li role="presentation" ng-class="{active:menuCtr.isSelected(2)}"><a role="tab" ng-click="menuCtr.select(2)" >Mains</a></li>
+                <li role="presentation" ng-class="{active:menuCtr.isSelected(3)}"><a role='tab' ng-click="menuCtr.select(3)" >Appetizer</a></li>
+                <li role="presentation" ng-class="{active:menuCtr.isSelected(4)}"><a role='tab' ng-click="menuCtr.select(4)" >Dessert</a></li>      
+            </ul>
+            
             <div class="col-xs-12">
+                <div class="tab-content">
                 <ul class="media-list">
-                <li class="media" ng-repeat="dish in menuCtr.dishes">
+                <li class="media" ng-repeat="dish in menuCtr.dishes | filter:menuCtr.filterText">
                 <div class="media-left media-middle">
                     <a href="#">
                     <img class="media-object img-thumbnail" ng-src={{dish.image}} alt="uthapizza">
@@ -37,11 +45,14 @@
                     </li>
                 </ul>
             </div>
+           </div>
         </div>
     </div>
     <script>
     var app=angular.module("angularController",[]);
         app.controller("menuController",function(){
+           this.filterText="";
+           this.setTab=1;
            var dishes=[
                          {
                            name:'Uthapizza',
@@ -81,6 +92,30 @@
                         }
                         ];
             this.dishes=dishes;
+            
+            this.select=function(setTab){
+                this.setTab=setTab;
+                switch(setTab){
+                    case 1:
+                        this.filterText='';
+                        break;
+                    case 2:
+                        this.filterText='mains';
+                        break;
+                    case 3:
+                        this.filterText='appetizer';
+                        break;
+                    case 4:
+                        this.filterText='dessert';
+                        break;
+                    default:
+                        break;
+                };
+                        
+            }
+            this.isSelected=function(setTab){
+                return this.setTab===setTab;
+            }
         })
     </script>
 </body>
