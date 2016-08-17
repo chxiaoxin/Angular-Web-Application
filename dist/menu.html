@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="angularController">
+
+<head>
+     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">>
+    <title>Ristorante Con Fusion: Menu</title>
+    <link rel="stylesheet" href="styles/*-91f9eafe15.css"/>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row row-content" ng-controller="menuController as menuCtr">
+            <ul class="nav nav-tabs" role='tablist'>
+                <li role="presentation" ng-class="{active:menuCtr.isSelected(1)}"><a role="tab" ng-click="menuCtr.select(1)">The Menu</a></li>
+                <li role="presentation" ng-class="{active:menuCtr.isSelected(2)}"><a role="tab" ng-click="menuCtr.select(2)" >Mains</a></li>
+                <li role="presentation" ng-class="{active:menuCtr.isSelected(3)}"><a role='tab' ng-click="menuCtr.select(3)" >Appetizer</a></li>
+                <li role="presentation" ng-class="{active:menuCtr.isSelected(4)}"><a role='tab' ng-click="menuCtr.select(4)" >Dessert</a></li>      
+            </ul>
+            
+            <div class="col-xs-12">
+                <div class="tab-content">
+                <ul class="media-list">
+                <li class="media" ng-repeat="dish in menuCtr.dishes | filter:menuCtr.filterText">
+                <div class="media-left media-middle">
+                    <a href="#">
+                    <img class="media-object img-thumbnail" ng-src={{dish.image}} alt="uthapizza">
+                    </a>
+                    </div>
+                    <div class="media-body">
+                    <h2 claas="media-heading">
+                        {{dish.name}}
+                        </h2>
+                        <span class="label label-danger label-xs">{{dish.label}}</span>
+                        <span class="badge">{{dish.price | currency}}</span>
+                        <p>{{dish.description}}</p>
+                    </div>
+                    </li>
+                </ul>
+            </div>
+           </div>
+        </div>
+    </div>
+    <script src="scripts/*-62feecb481.js"></script>
+</body>
+</html>
