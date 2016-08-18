@@ -1,8 +1,9 @@
 'use strict'; 
-angular.module("angularController",[]).controller("menuController",function(){
-           this.filterText="";
-           this.setTab=1;
-           var dishes=[
+angular.module("angularController",[]).controller("MenuController",['$scope',function($scope){
+           $scope.filterText="";
+           $scope.showDetails='false';
+           $scope.setTab=1;
+           $scope.dishes=[
                          {
                            name:'Uthapizza',
                            image: 'images/uthapizza.png',
@@ -40,28 +41,30 @@ angular.module("angularController",[]).controller("menuController",function(){
                            comment: ''
                         }
                         ];
-            this.dishes=dishes;
             
-            this.select=function(setTab){
-                this.setTab=setTab;
+            $scope.select=function(setTab){
+                $scope.setTab=setTab;
                 switch(setTab){
                     case 1:
-                        this.filterText='';
+                        $scope.filterText='';
                         break;
                     case 2:
-                        this.filterText='mains';
+                        $scope.filterText='mains';
                         break;
                     case 3:
-                        this.filterText='appetizer';
+                        $scope.filterText='appetizer';
                         break;
                     case 4:
-                        this.filterText='dessert';
+                        $scope.filterText='dessert';
                         break;
                     default:
                         break;
                 }    
             };
-            this.isSelected=function(setTab){
-                return this.setTab===setTab;
+            $scope.toggleDetails=function(){
+                $scope.showDetails=!$scope.showDetails;
             };
-        });
+            $scope.isSelected=function(setTab){
+                return $scope.setTab===setTab;
+            };
+        }]);

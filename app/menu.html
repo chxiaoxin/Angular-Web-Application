@@ -18,18 +18,19 @@
 <body>
 
     <div class="container">
-        <div class="row row-content" ng-controller="menuController as menuCtr">
+        <div class="row row-content" ng-controller="MenuController">
             <ul class="nav nav-tabs" role='tablist'>
-                <li role="presentation" ng-class="{active:menuCtr.isSelected(1)}"><a role="tab" ng-click="menuCtr.select(1)">The Menu</a></li>
-                <li role="presentation" ng-class="{active:menuCtr.isSelected(2)}"><a role="tab" ng-click="menuCtr.select(2)" >Mains</a></li>
-                <li role="presentation" ng-class="{active:menuCtr.isSelected(3)}"><a role='tab' ng-click="menuCtr.select(3)" >Appetizer</a></li>
-                <li role="presentation" ng-class="{active:menuCtr.isSelected(4)}"><a role='tab' ng-click="menuCtr.select(4)" >Dessert</a></li>      
+                <li role="presentation" ng-class="{active:isSelected(1)}"><a role="tab" ng-click="select(1)">The Menu</a></li>
+                <li role="presentation" ng-class="{active:isSelected(2)}"><a role="tab" ng-click="select(2)" >Mains</a></li>
+                <li role="presentation" ng-class="{active:isSelected(3)}"><a role='tab' ng-click="select(3)" >Appetizer</a></li>
+                <li role="presentation" ng-class="{active:isSelected(4)}"><a role='tab' ng-click="select(4)" >Dessert</a></li>      
             </ul>
             
             <div class="col-xs-12">
+                <button class="btn btn-xs btn-primary pull-right" type='button' ng-click='toggleDetails()'>{{showDetails? 'Hide Details':'Show Details'}}</button>
                 <div class="tab-content">
                 <ul class="media-list">
-                <li class="media" ng-repeat="dish in menuCtr.dishes | filter:menuCtr.filterText">
+                <li class="media" ng-repeat="dish in dishes | filter:filterText">
                 <div class="media-left media-middle">
                     <a href="#">
                     <img class="media-object img-thumbnail" ng-src={{dish.image}} alt="uthapizza">
@@ -41,7 +42,7 @@
                         </h2>
                         <span class="label label-danger label-xs">{{dish.label}}</span>
                         <span class="badge">{{dish.price | currency}}</span>
-                        <p>{{dish.description}}</p>
+                        <p ng-show='showDetails'>{{dish.description}}</p>
                     </div>
                     </li>
                 </ul>

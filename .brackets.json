@@ -1,0 +1,5 @@
+{
+    "jscodehints.detectedExclusions": [
+        "/home/lixin/version-control/Angular-web-application/bower_components/jquery/src/ajax/xhr.js"
+    ]
+}
