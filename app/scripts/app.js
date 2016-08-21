@@ -1,2 +1,19 @@
 'use strict'; 
-angular.module("angularController",[]);
+angular.module("angularController",['ngRoute'])
+.config(function($routeProvider){
+    $routeProvider
+    .when('/contactus',{
+        templateUrl:'contactus.html',
+        controller:'ContactController'
+    })
+     .when('/menu/:id',{
+        templateUrl:'dishdetail.html',
+        controller:'dishDetailController'
+    })
+     .when('/menu/',{
+        templateUrl:'menu.html',
+        controller:'MenuController'
+    })
+    .otherwise('/contactus');
+})
+;

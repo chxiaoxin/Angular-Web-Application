@@ -1,6 +1,7 @@
 {
     "jscodehints.detectedExclusions": [
         "/home/lixin/version-control/Angular-web-application/bower_components/jquery/src/ajax/xhr.js",
-        "/home/lixin/version-control/Angular-web-application/bower_components/jquery/src/core/ready-no-deferred.js"
+        "/home/lixin/version-control/Angular-web-application/bower_components/jquery/src/core/ready-no-deferred.js",
+        "/home/lixin/version-control/Angular-web-application/Angular-web-application/bower_components/jquery/src/var/toString.js"
     ]
 }

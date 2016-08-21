@@ -59,9 +59,9 @@ angular.module("angularController").controller("MenuController",['$scope','menuF
                                   };
 }])
 
-.controller('dishDetailController',['$scope','menuFactory',function($scope,menuFactory){
+.controller('dishDetailController',['$scope','menuFactory','$routeParams',function($scope,menuFactory,$routeParams){
 
-            $scope.dish=menuFactory.getdish(1);
+            $scope.dish=menuFactory.getdish(parseInt($routeParams.id,10));
             $scope.criteria='';
             $scope.val='';
             $scope.passVal=function(){
