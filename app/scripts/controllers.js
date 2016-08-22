@@ -59,13 +59,13 @@ angular.module("angularController").controller("MenuController",['$scope','menuF
                                   };
 }])
 
-.controller('dishDetailController',['$scope','menuFactory','$routeParams',function($scope,menuFactory,$routeParams){
-
-            $scope.dish=menuFactory.getdish(parseInt($routeParams.id,10));
-            $scope.criteria='';
-            $scope.val='';
+.controller('dishDetailController',['$scope','menuFactory','$stateParams',function($scope,menuFactory,$stateParams){
+            $scope.test={};
+            $scope.criteria;
+            $scope.dish=menuFactory.getdish(parseInt($stateParams.id,10));
             $scope.passVal=function(){
-                $scope.criteria=$scope.val;
+                console.log($scope.test.val);
+                $scope.criteria=$scope.test.val;
             };
         }])
 .controller('FormController',['$scope',function($scope){

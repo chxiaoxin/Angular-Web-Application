@@ -1,19 +1,9 @@
-<!DOCTYPE html>
-<html lang="en" ng-app="angularController">
 
-<head>
-     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Ristorante Con Fusion: Menu</title>
-    <link rel="stylesheet" href="styles/*-91f9eafe15.css"/>
-</head>
-
-<body>
 
     <div class="container">
         <div class="row row-content" ng-controller="dishDetailController">
             <div class="col-xs-12">
+                <button class='btn btn-xs btn-primary pull-right' ui-sref='app.menu' type='button'>back to menu</button>
                 <div class="media">
                     <div class="media-left  media-middle" ng-init="dish=dish">
                     <img ng-src={{dish.image}} class="media-object img-thumbnail">
@@ -31,7 +21,7 @@
             <div class="col-xs-9 col-xs-offset-1" ng-controller='FormController'>
                 <label>Custom Comments</label>
                 <small>&nbsp;sort by</small>
-                <input type="txt" ng-keypress='passVal()' ng-model="val">
+                <input type="txt" ng-keypress='passVal()' ng-model="test.val">
                
                 <div ng-repeat="Comment in dish.comments | orderBy:criteria" >
                     <blockquote>Star {{Comment.rating}}<br>{{Comment.comment}}
@@ -91,8 +81,3 @@
         </div>
 
     </div>
-
-    <script src="scripts/*-f80e79da22.js"></script>
-</body>
-
-</html>
