@@ -1,0 +1,83 @@
+
+
+    <div class="container">
+        <div class="row row-content" ng-controller="dishDetailController">
+            <div class="col-xs-12">
+                <button class='btn btn-xs btn-primary pull-right' ui-sref='app.menu' type='button'>back to menu</button>
+                <div class="media">
+                    <div class="media-left  media-middle" ng-init="dish=dish">
+                    <img ng-src={{dish.image}} class="media-object img-thumbnail">
+                    </div>
+                    <div class="media-body">
+                        <div class="media-heading">
+                        {{dish.name}}
+                        </div>
+                    <span class="label label-xs label-danger">{{dish.label}}</span>
+                        <span class="badge">{{dish.price}}</span>
+                        <p>{{dish.description}}</p>
+                        </div>
+                </div>
+            </div>
+            <div class="col-xs-9 col-xs-offset-1" ng-controller='FormController'>
+                <label>Custom Comments</label>
+                <small>&nbsp;sort by</small>
+                <input type="txt" ng-keypress='passVal()' ng-model="test.val">
+               
+                <div ng-repeat="Comment in dish.comments | orderBy:criteria" >
+                    <blockquote>Star {{Comment.rating}}<br>{{Comment.comment}}
+                    <footer>
+                        <cite>{{Comment.date}} {{Comment.author}}</cite>
+                    </footer>
+                        </blockquote>
+                    </div>
+                
+               
+                 <form class='form-horizontal' name='formVal' ng-submit='commentSubmit()' novalidate>
+         <div class="form-group" ng-class="{'has-error':formVal.author.$error.required&&formVal.author.$dirty}">
+            <div class='col-sm-2'>
+             <label class='control-label'>Name</label>
+             </div>
+             <div class='col-sm-10' >
+            <input type='txt' class='form-control' name='author' ng-model='formval.author' required>
+            <span ng-show='formVal.author.$error.required&&formVal.author.$dirty' class='help-block'>Please input your name</span>
+            </div>
+             </div>
+        <div class="form-group" ng-class="{'has-error':invalidcheck}">
+             <div class='col-sm-2'>
+             <label class='control-label'>Star</label>
+             </div>
+             <div class='col-sm-10'>
+                  <label class='form-check-inline'><input class='form-check-input' type='radio' name='star' value='1' ng-model='formval.rating'>
+                      1</label>&nbsp;
+                  <label class='form-check-inline'><input class='form-check-input' type='radio' name='star' value='2' ng-model='formval.rating'>
+                      2</label>&nbsp;
+                  <label class='form-check-inline'><input class='form-check-input' type='radio' name='star' value='3' ng-             
+                  model='formval.rating'>
+                      3</label>&nbsp;
+                  <label class='form-check-inline'><input class='form-check-input' type='radio' name='star' value='4' ng-model='formval.rating'>
+                      4</label>&nbsp;
+                  <label class='form-check-inline'><input class='form-check-input' type='radio' name='star' value='5' ng-model='formval.rating'>
+                      5</label>
+                 <span ng-show='invalidcheck' class='help-block'>please select a radio button</span>
+            </div>
+            </div>
+        <div class="form-group" ng-class="{'has-error':formVal.comment.$error.required&&formVal.comment.$dirty}">
+             <div class='col-sm-2'>
+             <label class='control-label'>Comment</label>
+             </div>
+             <div class='col-sm-10'>
+                 <textarea type='txt' class='form-control' rows="8" name='comment';/. ng-model='formval.comment' required></textarea>
+                 <span ng-show='formVal.comment.$error.required&&formVal.comment.$dirty' class='help-block'>Please enter your comment</span>
+            </div>
+            </div>
+        <div class="form-group">
+            <div class='col-sm-2'></div>
+            <div class='col-sm-10'>
+            <input class='btn btn-info' type='submit' ng-disabled='formVal.$invalid'>
+            </div>
+             </div>             
+        </form>
+            </div>
+        </div>
+
+    </div>

@@ -32,7 +32,7 @@ gulp.task('default', ['clean'], function() {
 });
 
 gulp.task('usemin',['jshint'], function () {
-  return gulp.src('./app/dishdetail.html')
+  return gulp.src('./app/**/*.html')
     .pipe(usemin({
       css: [minifycss(),rev()],
       js: [ngannotate(),uglify(),rev()]
@@ -54,16 +54,6 @@ gulp.task('copyfonts', ['clean'], function() {
    gulp.src('./bower_components/bootstrap/dist/fonts/**/*.{ttf,woff,eof,svg}*')
     .pipe(gulp.dest('./dist/fonts'));
 });
-
-gulp.task('usemin',['jshint'], function () {
-  return gulp.src('./app/dishdetail.html')
-    .pipe(usemin({
-      css: [minifycss(),rev()],
-      js: [uglify(),rev()]
-    }))
-    .pipe(gulp.dest('dist/'));
-});
-
 // Watch
 gulp.task('watch', ['browser-sync'], function() {
   // Watch .js files
@@ -85,7 +75,7 @@ gulp.task('browser-sync', ['default'], function () {
   browserSync.init(files, {
     server: {
       baseDir: "dist",
-      index: "menu.html"
+      index: "index.html"
     }
   });
   

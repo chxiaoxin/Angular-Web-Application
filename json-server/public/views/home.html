@@ -1,0 +1,72 @@
+
+    <div class="container" ng-controller="IndexController">
+        <div class="row row-content">
+            <div class="col-xs-12 col-sm-3 col-sm-push-9">
+                <p style="padding:20px;"></p>
+                <h3 align=center>Our Lipsmacking Culinary Creations</h3>
+            </div>
+            <div class="col-xs-12 col-sm-9 col-sm-pull-3">
+				<div class='media'>
+                    <div class='media-left'>
+                    <img class='media-object media-thumbnail' ng-src={{dish_outline[0].image}} alt='culianry creations'>
+                    </div>
+                        <div class='media-body'>
+                            <div class='media-heading'>
+                                <h4>{{dish_outline[0].name}}
+                            <label class='label label-xs label-danger'>{{dish_outline[0].label}}</label>
+                            <span class='badge'>{{dish_outline[0].price | currency}}</span>
+                            </h4></div>
+                            
+                            <strong>{{dish_outline[0].description}}</strong>
+                        </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row row-content">
+            <div class="col-xs-12 col-sm-3">
+                <p style="padding:20px;"></p>
+                <h3 align=center>This Month's Promotions</h3>
+            </div>
+            <div class="col-xs-12 col-sm-9">
+				<div class='media'>
+                    <div class='media-left'>
+                    <img class='media-object media-thumbnail' ng-src={{dish_outline[1].image}} alt='culianry creations'>
+                    </div>
+                        <div class='media-body'>
+                            <div class='media-heading'>
+                                <h4>{{dish_outline[1].name}}
+                            <label class='label label-xs label-danger'>{{dish_outline[1].label}}</label>
+                            <span class='badge'>{{dish_outline[1].price | currency}}</span>
+                            </h4></div>
+                            
+                            <strong>{{dish_outline[1].description}}</strong>
+                        </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row row-content">
+            <div class="col-xs-12 col-sm-3 col-sm-push-9">
+                <p style="padding:20px;"></p>
+                <h3 align=center>Sweety Dessert</h3>
+            </div>
+            <div class="col-xs-12 col-sm-9 col-sm-pull-3">
+					<div class='media'>
+                    <div class='media-left'>
+                    <img class='media-object media-thumbnail' ng-src={{dish_outline[2].image}} alt='culianry creations'>
+                    </div>
+                        <div class='media-body'>
+                            <div class='media-heading'>
+                                <h4>{{dish_outline[2].name}}
+                            <label class='label label-xs label-danger'>{{dish_outline[2].label}}</label>
+                            <span class='badge'>{{dish_outline[2].price | currency}}</span>
+                            </h4></div>
+                            
+                            <strong>{{dish_outline[2].description}}</strong>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
