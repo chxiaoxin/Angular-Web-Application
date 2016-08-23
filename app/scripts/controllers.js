@@ -104,4 +104,10 @@ angular.module("angularController").controller("MenuController",['$scope','menuF
         }
     };
 }])
+.controller('IndexController',['$scope','menuFactory',function($scope,menuFactory){
+    $scope.dish_outline=menuFactory.getdishes();
+}])
+.controller('AboutController',['$scope','corFactory',function($scope,corFactory){
+    $scope.leader_outline=corFactory.getLeaderInfo();
+}])
 ;
