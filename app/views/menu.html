@@ -7,14 +7,14 @@
                 <li role="presentation" ng-class="{active:isSelected(3)}"><a role='tab' ng-click="select(3)" >Appetizer</a></li>
                 <li role="presentation" ng-class="{active:isSelected(4)}"><a role='tab' ng-click="select(4)" >Dessert</a></li>      
             </ul>
-            
-            <div class="col-xs-12">
+            <div ng-if='!showMenu'>{{message}}</div>
+            <div class="col-xs-12" ng-if='showMenu'>
                 <button class="btn btn-xs btn-primary pull-right" type='button' ng-click='toggleDetails()'>{{showDetails? 'Hide Details':'Show Details'}}</button>
                 <div class="tab-content">
                 <ul class="media-list">
                 <li class="media" ng-repeat="dish in dishes | filter:filterText">
                 <div class="media-left media-middle">
-                    <a ui-sref="app.dishdetails({id:dish._id})">
+                    <a ui-sref="app.dishdetails({id:dish.id})">
                     <img class="media-object img-thumbnail" ng-src={{dish.image}} alt="dish">
                     </a>
                     </div>

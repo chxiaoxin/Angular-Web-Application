@@ -2,7 +2,8 @@
 
     <div class="container">
         <div class="row row-content" ng-controller="dishDetailController">
-            <div class="col-xs-12">
+            <div ng-if='!showDish'>{{message}}</div>
+            <div class="col-xs-12" ng-if="showDish">
                 <button class='btn btn-xs btn-primary pull-right' ui-sref='app.menu' type='button'>back to menu</button>
                 <div class="media">
                     <div class="media-left  media-middle" ng-init="dish=dish">

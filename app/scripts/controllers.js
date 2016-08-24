@@ -3,7 +3,17 @@ angular.module("angularController").controller("MenuController",['$scope','menuF
            $scope.filterText="";
            $scope.showDetails='false';
            $scope.setTab=1;
-           $scope.dishes=menuFactory.getdishes();
+           $scope.showMenu=false;
+           $scope.message='loading...';
+           $scope.dishes={};
+               menuFactory.getdishes()
+               .then(function(response){
+                   $scope.dishes=response.data;
+                   $scope.showMenu=true;
+               },function(response){
+                   $scope.message='Error:'+response.status;
+               })
+               ;
             
             $scope.select=function(setTab){
                 $scope.setTab=setTab;
@@ -62,7 +72,16 @@ angular.module("angularController").controller("MenuController",['$scope','menuF
 .controller('dishDetailController',['$scope','menuFactory','$stateParams',function($scope,menuFactory,$stateParams){
             $scope.test={};
             $scope.criteria;
-            $scope.dish=menuFactory.getdish(parseInt($stateParams.id,10));
+            $scope.dish={};
+            $scope.showDish=false;
+            $scope.message='Loading...';
+            menuFactory.getdish(parseInt($stateParams.id,10))
+            .then(function(response){
+                $scope.dish=response.data;
+                $scope.showDish=true;
+            },function(response){
+                   $scope.message='Error:'+response.status;
+            });
             $scope.passVal=function(){
                 console.log($scope.test.val);
                 $scope.criteria=$scope.test.val;
@@ -105,7 +124,16 @@ angular.module("angularController").controller("MenuController",['$scope','menuF
     };
 }])
 .controller('IndexController',['$scope','menuFactory',function($scope,menuFactory){
-    $scope.dish_outline=menuFactory.getdishes();
+    $scope.dish_outline={};
+    $scope.showIndex=false;
+    $scope.message='Loading...'
+    menuFactory.getdishes()
+        .then(function(response){
+                   $scope.dish_outline=response.data;
+                   $scope.showIndex=true;
+               },function(response){
+                   $scope.message='Error:'+response.status;
+    });
 }])
 .controller('AboutController',['$scope','corFactory',function($scope,corFactory){
     $scope.leader_outline=corFactory.getLeaderInfo();
