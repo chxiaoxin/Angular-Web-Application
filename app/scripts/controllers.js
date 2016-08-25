@@ -5,16 +5,13 @@ angular.module("angularController").controller("MenuController",['$scope','menuF
            $scope.setTab=1;
            $scope.showMenu=false;
            $scope.message='loading...';
-           $scope.dishes={};
-               menuFactory.getdishes()
-               .then(function(response){
-                   $scope.dishes=response.data;
+           $scope.dishes=menuFactory.getdishes().query(
+               function(response){
+                   $scope.dishes=response;
                    $scope.showMenu=true;
                },function(response){
-                   $scope.message='Error:'+response.status;
-               })
-               ;
-            
+                   $scope.message='Error'+response.status+response.statusText;
+               });
             $scope.select=function(setTab){
                 $scope.setTab=setTab;
                 switch(setTab){
@@ -72,22 +69,21 @@ angular.module("angularController").controller("MenuController",['$scope','menuF
 .controller('dishDetailController',['$scope','menuFactory','$stateParams',function($scope,menuFactory,$stateParams){
             $scope.test={};
             $scope.criteria;
-            $scope.dish={};
             $scope.showDish=false;
             $scope.message='Loading...';
-            menuFactory.getdish(parseInt($stateParams.id,10))
-            .then(function(response){
-                $scope.dish=response.data;
-                $scope.showDish=true;
-            },function(response){
-                   $scope.message='Error:'+response.status;
-            });
+            $scope.dish=menuFactory.getdishes().get({id:parseInt($stateParams.id,10)})
+            .$promise.then(function(response){
+                   $scope.dish=response;
+                   $scope.showDish=true;
+               },function(response){
+                   $scope.message='Error'+response.status+response.statusText;
+               });
             $scope.passVal=function(){
                 console.log($scope.test.val);
                 $scope.criteria=$scope.test.val;
             };
         }])
-.controller('FormController',['$scope',function($scope){
+.controller('FormController',['$scope','menuFactory',function($scope,menuFactory){
     $scope.formval={
         author:'',
         rating:'',
@@ -111,6 +107,7 @@ angular.module("angularController").controller("MenuController",['$scope','menuF
             var milsec=currentDate.getMilliseconds();
             $scope.formval.date=year+'-'+month+'-'+date+'T'+hour+':'+minute+':'+sec+'.'+milsec+'Z';
             $scope.dish.comments.push($scope.formval);
+            menuFactory.getdishes().update({id:$scope.dish.id},$scope.dish);
             $scope.invalidcheck=false;
             $scope.formval={
         author:'',
@@ -124,16 +121,17 @@ angular.module("angularController").controller("MenuController",['$scope','menuF
     };
 }])
 .controller('IndexController',['$scope','menuFactory',function($scope,menuFactory){
-    $scope.dish_outline={};
+
     $scope.showIndex=false;
     $scope.message='Loading...'
-    menuFactory.getdishes()
-        .then(function(response){
-                   $scope.dish_outline=response.data;
+    $scope.dish_outline=menuFactory.getdishes().query(
+        function(response){
+                   $scope.dish_outline=response;
                    $scope.showIndex=true;
-               },function(response){
-                   $scope.message='Error:'+response.status;
-    });
+               },
+        function(response){
+                   $scope.message='Error'+response.status+response.statusText;
+               });
 }])
 .controller('AboutController',['$scope','corFactory',function($scope,corFactory){
     $scope.leader_outline=corFactory.getLeaderInfo();
